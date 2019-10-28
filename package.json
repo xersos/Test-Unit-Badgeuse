@@ -50,7 +50,7 @@
     "start": "node index.js",
     "test": "mocha --exit --recursive test/**/*.js",
     "test-nyc": "nyc mocha src/server/**",
-    "sonar-scanner": "sonar-scanner -Dsonar.login=d92b583fdcabe0401360468e0d7d0077467f9dc8",
+    "sonar-scanner": "sonar-scanner -Dsonar.login=39fc9392f54535932295482b82aeb379f5ee2449",
     "report-coverage": "nyc report --reporter=lcov --reporter=text --report-dir=.nyc_coverage"
   },
   "author": "franck hubschwerle, Vincent Meneur, Chloe.s.prudham, Anthony Schwartz, Gauthier Staehler, Maxime Rayot",
