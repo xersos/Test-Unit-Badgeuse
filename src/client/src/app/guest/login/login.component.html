@@ -1,0 +1,39 @@
+<!-- FORM -->
+<form [formGroup]="formLogin" (submit)="onLoginSubmit()" class="form-signin text-center">
+  <!-- picture -->
+  <div class="form-group">
+    <img src="assets/img/logo_uha_40.png" alt="logo UHA 4.0" class="img-logo">
+    <p>Espace étudiant 4.0</p>
+  </div>
+
+  <!-- USERMAIL -->
+  <div class="form-group">
+    <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+    <label for="inputUserMail" class="sr-only">userMail</label>
+    <input type="text" id="inputUserMail" name="userMail" class="form-control rounded" placeholder="Nom d'utilisateur" formControlName="userMail" required autofocus>
+    <!-- error message -->
+    <ul class="help-block">
+      <li class="text-danger" *ngIf="formLogin.controls.userMail.errors?.required && formLogin.controls.userMail.dirty"><small>Le champ du nom d'utilisateur est requis.</small></li>
+    </ul>
+  </div>
+
+  <!-- USERPASS -->
+  <div class="form-group">
+    <label for="inputPassword" class="sr-only">Mot de passe</label>
+    <input type="password" id="inputPassword" class="form-control rounded" placeholder="Mot de passe" name="password" formControlName="password" required>
+    <!-- error message -->
+    <ul class="help-block">
+      <li class="text-danger" *ngIf="formLogin.controls.password.errors?.required && formLogin.controls.password.dirty"><small>Le champ mot de passe est requis.</small></li>
+      <li class="text-danger" *ngIf="formLogin.controls.password.errors?.minlength || formLogin.controls.password.errors?.maxlength || (formLogin.controls.password.errors?.validatePassword && formLogin.controls.password.dirty)">
+        <small>Le mot de passe est invalide.</small>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="form-group">
+    <button class="btn btn-lg btn-outline-secondary alert-secondary btn-block" type="submit" [disabled]="!formLogin.valid || processing">Se connecter</button>
+  </div>
+
+</form>
+

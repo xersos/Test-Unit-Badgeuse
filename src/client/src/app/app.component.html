@@ -1,0 +1,27 @@
+<!-- NAVBAR MENU -->
+    <app-menu [adminActive]="adminActive" *ngIf="getConnectStatus()"></app-menu>
+<!-- CONTENT PAGE -->
+
+  <div class="content-page d-lg-flex" [ngClass]="{'d-none': getConnectStatus()}">
+
+  <div class="content-page-child">
+    <router-outlet></router-outlet>
+  </div>
+
+    <div class="content-list" *ngIf="getConnectStatus()">
+
+      <!-- BUTTON SIDEBAR COLLAPSE -->
+      <button type="button" id="sidebarCollapse" class="btn btn-info btn-slider" (click)="onBtnSideBar()">
+        <fa-icon [icon]="btnSideBar"></fa-icon>
+      </button>
+
+      <div id="sidebar">
+
+        <!-- SIDEBAR -->
+        <div class="list-overflow ">
+        <app-liste [adminActive]="adminActive"></app-liste>
+        </div>
+      </div>
+    </div>
+
+</div>

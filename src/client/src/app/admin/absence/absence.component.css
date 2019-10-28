@@ -1,0 +1,32 @@
+.dllIcon {
+    font-size: 1.2rem;
+}
+
+/* =================================== */
+/* MODAL                               */
+/* =================================== */
+.modal-dialog {
+    margin-top: 10%;
+}
+.modal-header {
+    background-color: #205081;
+    color: white;
+}
+
+.modal-body {
+    padding: 20px 50px;
+}
+
+/* =================================== */
+/* COLUMN TABLE                        */
+/* =================================== */
+#absName {width: 10%;}
+#absDate {width: 20%;}
+#absReason {width: 10%;}
+#absCertif {width: 5%;}
+#absComment {width: 30%;}
+#absValid {width: 15%;}
+
+#absComment:hover {
+    cursor: pointer;
+}

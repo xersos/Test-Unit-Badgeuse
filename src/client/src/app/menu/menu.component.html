@@ -1,0 +1,94 @@
+<!-- NAVBAR LARGE SCREEN -->
+<section class="d-none d-lg-block">
+  <nav class="navbar fixed-top navbar-expand-lg">
+
+    <!-- Heading navbar -->
+      <div class="dropdown">
+          <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown" data-toggle="dropdown" id="dropdownMenuButton" type="button">
+              <a><h1>≡</h1></a>
+          </button>
+          <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+              <a class="dropdown-item" href="http://145.239.32.252:8090" style="color: #000080;">Confluence</a>
+              <a class="dropdown-item" href="http://145.239.32.252:8080" style="color: #000080;">Jira</a>
+              <a class="dropdown-item" href="http://145.239.32.253" style="color: #000080;">Gitlab</a>
+              <a class="dropdown-item" href="https://uha40-workspace.slack.com" style="color: #000080;">Slack</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="https://calendar.google.com/calendar/embed?src=uha4.0promo2@gmail.com" style="color: #000080;">Calendrier</a>
+              <a class="dropdown-item" href="https://e-services.uha.fr/fr/index.html" style="color: #000080;">E-service</a>
+          </div>
+      </div>
+
+      <img alt="UHA 4.0" class="nav-img-logo d-none d-lg-block" src="../../assets/img/logo_uha_40_white.png">
+      <a class="nav-link" routerLink="userSpace" routerLinkActive="active">
+          <span class="navbar-brand mb-0 pr-2 pl-2 h1"><fa-icon [icon]="faUserAstronaut" class="mr-2"></fa-icon>{{ nomUser | uppercase}} {{ prenomUser }}</span>
+      </a>
+
+    <!-- Navbar -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <!-- panel left -->
+      <ul class="navbar-nav mr-auto">
+
+      </ul>
+
+      <!-- panel right -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <!-- Administration access -->
+          <a class="nav-link mr-4" routerLink="admin" routerLinkActive="active" *ngIf="adminActive">
+            <fa-icon [icon]="faChessQueen" class="mr-2"></fa-icon>
+            <span class="badge badge-danger" *ngIf="nbAbsence !== 0">{{nbAbsence}}</span>
+            Administration
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <!--Alert Bell -->
+          <a class="nav-link mr-2 alerte-temoin"
+             *ngIf="alerteActive"
+             data-toggle="tooltip"
+             data-placement="right"
+             title="{{ alerteData.start_point | date:'EEEE'}} tu as pointé à {{ alerteData.start_point | date:'HH:mm'}} mais tu n'as pas dépointé.">
+            <fa-icon [icon]="faBell" class="icone-bell"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item mr-2 pr-3 pl-2 bg-light rounded-top" *ngIf="badgerActive">
+          <!-- Badger -->
+          <app-badger [presence]="presenceUser" [id_user]="idUser" ></app-badger>
+        </li>
+
+        <li class="nav-item">
+          <!-- Disconnect button -->
+          <button class="btn btn-outline-danger alert-danger ml-2" routerLink="login" (click)="onDisconnect()">Déconnexion</button>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+</section>
+
+<!-- NAVBAR SMALL SCREEN -->
+<section class="d-block d-lg-none">
+  <nav class="justify-content-center">
+    <ul class="navbar-nav text-center">
+      <li class="nav-item">
+        <span class="nav-link">
+          <div><fa-icon [icon]="faUserAstronaut" class=""></fa-icon></div>
+          <div><small>{{ nomUser | uppercase}} {{prenomUser}}</small></div>
+        </span>
+      </li>
+      <li class="nav-item text-center">
+        <span class="nav-link">
+          <div class="btn btn-light btn-lg p-0">
+            <app-badger [presence]="presenceUser" [id_user]="idUser" *ngIf="badgerActive"></app-badger>
+          </div>
+        </span>
+      </li>
+      <li class="nav-item text-center" (click)="onDisconnect()">
+        <a class="nav-link" routerLink="login" routerLinkActive="active">
+          <div><fa-icon [icon]="faTimesCircle" class=""></fa-icon></div>
+          <div><small>Déconnexion</small></div>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</section>

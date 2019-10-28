@@ -1,0 +1,153 @@
+<div id="content" #content>   <!-- Balise pour l'export PDF -->
+  <div id="contentToConvert"> <!-- Balise pour l'export PDF -->
+    <div class="shadow p-lg-3 mb-3">
+
+      <!-- NAVIGATION WEEK -->
+      <div class="d-flex justify-content-between mb-2">
+        <div data-html2canvas-ignore="true">
+          <button class="btn btn-secondary h-100" (click)="onPrevWeek()"> < </button>
+        </div>
+        <div class="text-center">
+          <h2>Période du<b> {{ startDateTime | date:'dd MMM yyyy'}} </b>au<b> {{ endDateTime  | date:'dd MMM yyyy'}}</b></h2>
+        </div>
+        <div data-html2canvas-ignore="true">
+          <button class="btn btn-secondary h-100" (click)="onNextWeek()"> > </button>
+        </div>
+      </div>
+
+      <!-- FILTER / SELECT -->
+      <form [formGroup]="form" (change)="onInitGroup()" data-html2canvas-ignore="true" class="form-signin text-center">
+        <div class="border-blue d-flex flex-column flex-lg-row">
+
+          <div class="input-group">
+            <div class="input-group-prepend w-100">
+              <div class="input-group-text w-100">
+                Trier par:
+              </div>
+            </div>
+          </div>
+          <div class="input-group w-100">
+            <select formControlName="orderBy" class="custom-select w-100">
+              <option value="userName">Ordre alpabétique</option>
+              <option value="id_group">Année</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-append w-100">
+              <span class="input-group-text w-100">Sélection: </span>
+            </div>
+          </div>
+
+          <div class="input-group ">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <input class="" type="checkbox" id="inlineCheckbox1" value="option1" formControlName="checkbox1">
+              </div>
+            </div>
+            <label class="form-control text-left" for="inlineCheckbox1">1ère année</label>
+          </div>
+
+          <div class="input-group ">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input class="" type="checkbox" id="inlineCheckbox2" value="option2" formControlName="checkbox2">
+              </div>
+            </div>
+            <label class="form-control text-left" for="inlineCheckbox2">2e année</label>
+          </div>
+
+          <div class="input-group ">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input class="" type="checkbox" id="inlineCheckbox3" value="option3" formControlName="checkbox3">
+              </div>
+            </div>
+            <label class="form-control text-left" for="inlineCheckbox3">3e année</label>
+          </div>
+
+          <div class="input-group ">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input class="" type="checkbox" id="inlineCheckbox4" value="option4" formControlName="checkbox4">
+              </div>
+            </div>
+            <label class="form-control text-left" for="inlineCheckbox4">4e année</label>
+          </div>
+
+          <div class="input-group ">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input class="" type="checkbox" id="inlineCheckbox5" value="option5" formControlName="checkbox5">
+              </div>
+            </div>
+            <label class="form-control text-left" for="inlineCheckbox5">5e année</label>
+          </div>
+
+          <!-- UPLOAD PDF BUTTON -->
+          <div class="input-group">
+                <button class="btn btn-primary w-100 bg-blue {{ cssButton }}" (click)="downloadPDF()" [disabled]="disabledButton">
+                  <span id="submitbutton">Exporter en PDF</span>
+                </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+    <!-- NAV -->
+    <nav data-html2canvas-ignore="true">
+      <div class="nav nav-tabs to-border-blue" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link bg-blue active" id="nav-graphic-tab" data-toggle="tab" href="#nav-graphic" role="tab" aria-controls="nav-graphic" aria-selected="true">Graphique</a>
+        <a class="nav-item nav-link bg-blue" id="nav-table-tab" data-toggle="tab" href="#nav-table" role="tab" aria-controls="nav-table" aria-selected="false">Tableau</a>
+        <a class="nav-item nav-link bg-blue" id="nav-pie-tab" data-toggle="tab" href="#nav-pie" role="tab" aria-controls="nav-pie" aria-selected="false">Graphique camembert</a>
+      </div>
+    </nav>
+
+    <!-- CONTENT NAV -->
+    <div class="tab-content pt-3" id="nav-tabContent">
+      <!-- graphic -->
+      <div class="tab-pane fade show active" id="nav-graphic" role="tabpanel" aria-labelledby="nav-graphic-tab">
+        <app-graph [startDate]="startDateTime"></app-graph>
+      </div>
+      <!-- table -->
+      <div class="tab-pane fade d-flex justify-content-center mb-5" id="nav-table" role="tabpanel" aria-labelledby="nav-table-tab">
+        <table>
+          <tr>
+            <th class="text-center pb-2">Année</th>
+            <th class="text-center pb-2">Etudiant</th>
+            <th class="text-center pb-2">Présence (heure)</th>
+            <th class="text-center pb-2">Absence (jour)</th>
+          </tr>
+
+          <tr *ngFor="let user of userList" class="tr" [ngClass]="{'redLine': ((user.duration | slice:0:2) + (user.day * 7)) < 35}" routerLink="/userDetail/{{user.userId}}/{{ startDateTime | slice:0:10 }}">
+            <td class="border p-2 text-center" id="group">{{ user.id_group }}</td>
+            <td class="border p-2" id="userName">{{ user.userName }}</td>
+            <td class="border p-2" id="duration">{{ user.duration | slice:0:5}}</td>
+            <td class="border p-2" id="absence">{{ user.day}}</td>
+          </tr>
+
+        </table>
+      </div>
+      <!-- Pie chart -->
+      <div class="tab-pane fade d-flex justify-content-center mb-5" id="nav-pie" role="tabpanel" aria-labelledby="nav-pie-tab">
+        <app-pie-chart-admin [StartDate]="startDateTime"></app-pie-chart-admin>
+      </div>
+    </div>
+
+    <!-- LEGEND GRAPHIC -->
+    <footer>
+      <section class="shadow mb-5 ml-5 mr-5 pb-3">
+        <div class="text-center">
+          Légende du graphique
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="list-group-item-success legend-case">Supérieur à 35H</div>
+          <div class="list-group-item-danger legend-case">Inférieur à 35H</div>
+          <div class="list-group-item-dark legend-case">Absence validée</div>
+        </div>
+      </section>
+    </footer>
+
+  </div>
+</div>

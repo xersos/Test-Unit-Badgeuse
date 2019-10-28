@@ -1,0 +1,23 @@
+<div class="container">
+    <h3 mat-dialog-title>Are you sure?</h3>
+    <div mat-dialog-content>
+      prenom_user: {{data.prenom_user}}
+      <p></p>
+      nom_user: {{data.nom_user}}
+      <p></p>
+      mail_user: {{data.mail_user}}
+      <p></p>
+      id_role: {{data.id_role}}
+      <p></p>
+      id_user: {{data.id_user}}
+      <p></p>
+      card: {{data.card}}
+      <p></p>
+    </div>
+  
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="1" (click)="confirmDelete()">Delete</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </div>
+  

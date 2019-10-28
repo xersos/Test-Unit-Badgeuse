@@ -1,0 +1,35 @@
+<section class="h-100 d-flex flex-column justify-content-center">
+
+    <div class="d-flex justify-content-center">
+
+        <div class="menu-box" routerLink="/hebdo">
+            <div>
+                <img src="assets/img/graphique_icon.png" alt="Graphique d'heure de la semaine" class="img-icon">
+            </div>
+            <div>
+                Graphique d'heure de la semaine
+            </div>
+        </div>
+
+        <div class="menu-box" routerLink="/absence">
+            <div>
+                <img src="assets/img/justification_icon.png" alt="Justification des absences" class="img-icon">
+            </div>
+            <div>
+                <span class="badge badge-danger" *ngIf="nbAbsence !== 0">{{nbAbsence}}</span> Justification des absences
+            </div>
+        </div>
+
+        <div class="menu-box" routerLink="/crudUser">
+            <div>
+                <img src="assets/img/add-user_icon.png" alt="Ajout d'utilisateurs" class="img-icon">
+            </div>
+            <div>
+                Ajout d'utilisateurs
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- TODO : afficher un badge sur la justification des absences si il y en as -->

@@ -1,0 +1,50 @@
+tr{
+    line-height: 10px;
+}
+#group{
+    width: 50px;
+}
+#userName{
+    width: 400px;
+}
+#duration{
+    width: 150px;
+}
+.redLine{
+    background-color: #ff939399;
+}
+.redLine:hover{
+    background-color: #ff939355;
+}
+
+.tr:hover {
+    cursor: pointer;
+    background-color: #d2e2f3;
+}
+
+.tab-pane:not(.active) table {
+    display: none;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 991px) {
+    h2{
+        font-size: 1rem;
+    }
+    tr{
+        line-height: 20px;
+    }
+}
+
+/*-----------------------------------------------------
+    FOOTER
+-------------------------------------------------------
+ */
+.legend-case{
+    width: 200px;
+    margin: 0 5px 0 5px;
+    text-align: center;
+}

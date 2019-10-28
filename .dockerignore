@@ -1,0 +1,11 @@
+node_modules
+web
+BDD
+client
+.git
+.gitignore
+.idea
+docker-compose.yml
+README.md
+test.js
+npm-debug.log

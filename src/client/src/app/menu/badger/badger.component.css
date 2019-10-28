@@ -1,0 +1,63 @@
+.badge-panel {
+    border-radius: 5px;
+    height: 100%;
+}
+.badge-section {
+    width: 100%;
+        margin: 0;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#badge-status {
+    width: 50px;
+    height: 40px;
+    padding: 5px;
+}
+.badge-temoin {
+    font-size: 2rem;
+    transition: 1s ease;
+}
+.btn-badger {
+    padding: 0 5px 0 5px;
+    margin: 6px 0 0 0;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 991px) {
+    .badge-panel {
+        border-radius: 0px;
+        display: flex;
+        flex-direction: column;
+        padding: 10px 30px 10px 30px;
+    }
+    .badge-temoin {
+        font-size: 2rem;
+        margin-top: -5px;
+        transition: 1s ease;
+    }
+    .btn-badger {
+        font-size: 1rem;
+        margin: 0;
+    }
+    .btn-badger:hover {background-color: #ffffff00;}
+    .btn-badger:active {background-color: cornflowerblue;}
+    .text-muted { font-size: 1rem;}
+
+    @media (max-width: 550px) {
+        .badge-temoin {
+            font-size: 4rem;
+            margin-top: -5px;
+            transition: 1s ease;
+        }
+        .btn-badger {
+            font-size: 2rem;
+        }
+    }
+
+}

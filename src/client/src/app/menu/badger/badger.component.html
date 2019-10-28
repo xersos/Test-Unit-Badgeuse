@@ -1,0 +1,49 @@
+<!-- navbar large screen -->
+<section class="d-none d-lg-block">
+    <div class="badge-panel d-flex justify-content-between">
+
+      <!-- status présence -->
+
+      <section class="badge-section" id="badge-status">
+        <fa-icon [icon]=" temoinState "
+                 [ngStyle]="{color: getTemoinStatus()}"
+                 class="badge-temoin"
+                 data-toggle="tooltip"
+                 data-placement="left"
+                 title="{{ tooltipState }}"
+        ></fa-icon>
+      </section>
+
+      <!-- badgeuse -->
+      <section class="badge-section">
+          <button class="btn btn-outline-secondary btn-badger alert-primary w-100"
+                  (click)="onBadge()"
+                  [disabled]="buttonActivate"
+          >Pointer</button>
+      </section>
+    </div>
+</section>
+
+
+
+<!-- navbar small screen -->
+<section class="d-block d-lg-none">
+    <button class="badge-panel btn btn-outline-secondary btn-badger border-0" (click)="onBadge()" [disabled]="buttonActivate">
+
+        <!-- status présence -->
+        <section class="badge-section">
+            <fa-icon [icon]=" temoinState "
+                     [ngStyle]="{color: getTemoinStatus()}"
+                     class="badge-temoin"
+            ></fa-icon>
+            <small class="text-muted">{{ tooltipState }}</small>
+        </section>
+
+        <!-- badgeuse -->
+        <section class="badge-section">
+            <button class="btn btn-outline-secondary btn-badger border-0 w-100"
+
+            >Pointer</button>
+        </section>
+    </button>
+</section>

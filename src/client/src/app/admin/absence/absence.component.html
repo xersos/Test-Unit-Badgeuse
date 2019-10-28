@@ -1,0 +1,62 @@
+<ng-template  *ngIf="absences?.length === 0;then none ;else table"></ng-template>
+
+<ng-template #none>
+  <h2 class="text-center mt-5 p-3 alert-success">Aucune absence à valider</h2>
+</ng-template>
+
+<ng-template #table>
+  <table class="table table-hover">
+    <thead>
+      <tr class="bg-blue">
+        <th scope="col">Etudiant</th>
+        <th scope="col">Date</th>
+        <th scope="col">Raison</th>
+        <th scope="col">Certificat</th>
+        <th scope="col">Commentaire</th>
+        <th scope="col">Validation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let absence of absences; let i = index;">
+
+        <td id="absName">{{ absence.absName }}</td>
+
+        <td id="absDate" *ngIf="absence.minDate !== absence.maxDate"><strong>{{ absence.minDate | date:'dd MMMM yyyy'}}</strong> au <strong>{{ absence.maxDate | date:'dd MMMM yyyy'}}</strong></td>
+        <td id="absDate" *ngIf="absence.minDate === absence.maxDate">{{ halfDayName[absence.halfDay]}} du <strong>{{ absence.minDate | date:'dd MMMM yyyy'}}</strong></td>
+
+        <td id="absReason">{{ absence.absReason | titlecase}}</td>
+
+        <td id="absCertif"><a *ngIf="absence.certificate !== null" [href]="absence.certificate" target="_blank"><fa-icon [icon]="faDownload" class="dllIcon"></fa-icon> {{ absence.certificate | slice:-4}}</a></td>
+
+        <td id="absComment" *ngIf="absence.comment !== null" data-toggle="modal" [attr.data-target]="'#exampleModal'+i">{{ absence.comment | truncate:[100,'...']}}</td>
+        <td id="absComment" *ngIf="absence.comment === null" ></td>
+
+        <td id="absValid">
+          <button type="button" class="btn btn-outline-success" (click)="onValidate(absence.ref, 1)">Valider</button>
+          <button type="button" class="btn btn-outline-danger" (click)="onValidate(absence.ref, 0)">Refuser</button>
+        </td>
+
+        <!-- Modal Comment-->
+        <div class="modal fade" id="exampleModal{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Commentaire de <strong>{{ absence.absName }}</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {{ absence.comment }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+
+

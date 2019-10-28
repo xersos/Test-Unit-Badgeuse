@@ -1,0 +1,18 @@
+<!-- NAVIGATION WEEK -->
+<div class="d-flex justify-content-between mb-2">
+    <div data-html2canvas-ignore="true">
+        <button class="btn btn-secondary h-100" (click)="onPrevWeek()"> < </button>
+    </div>
+    <div class="text-center">
+        <h2>Période du<b> {{ startDateTime | date:'dd MMM yyyy'}} </b>au<b> {{ endDateTime  | date:'dd MMM yyyy'}}</b></h2>
+    </div>
+    <div data-html2canvas-ignore="true">
+        <button class="btn btn-secondary h-100" (click)="onNextWeek()"> > </button>
+    </div>
+</div>
+
+<div>
+    <canvas id="pieChart"></canvas>
+</div>
+
+

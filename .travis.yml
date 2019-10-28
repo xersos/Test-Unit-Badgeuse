@@ -1,0 +1,72 @@
+dist: bionic
+
+language: node_js
+node_js:
+  - "11"
+branches: 
+  only:
+  - master
+cache: npm
+jobs:
+  include:
+    - stage: test-badgeuse
+      addons:
+        mariadb: "10.1"
+      services:
+        - mysql
+      install:
+        - npm i -g npm@6.4.1
+        - sudo chown -R travis .
+        - npm ci --only=production
+        - npm install -g pm2
+        - sudo mysql -e "source ./BDD/init.d/1-BDD-Badgeuse-tables.sql"
+        - sudo mysql -e "source ./BDD/init.d/2-BDD-Badgeuse-Data.sql"
+        - pm2 start index.js --name badgeuse
+      script:
+        - npm test
+    - stage: test-badgeuse
+      addons:
+        sonarcloud:
+          organization: "xersos" # the key of the org you chose at step #3
+          token:
+            secure: $SONAR_TOKEN # encrypted value of your token
+      install: 
+        - npm ci
+      script:
+        - npm run test-nyc
+        - npm run report-coverage
+        - sonar-scanner
+    - stage: deploy on heroku/dockerHUB/github
+      script: skip
+      install: skip
+      deploy:
+        provider: heroku
+        api_key:
+          secure: $HEROKU_TOKEN
+        app: badgeuse-intelligente-server
+    - stage: deploy on heroku/dockerHUB/github
+      install:
+        - sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        - sudo chmod +x /usr/local/bin/docker-compose
+      script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker-compose -f docker-compose.test.yml build
+        - docker-compose -f docker-compose.test.yml push
+        - docker logout
+    - stage: deploy on heroku/dockerHUB/github
+      install: skip
+      script: skip
+      deploy:
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file: .
+        skip_cleanup: true
+        on:
+          tags: true
+    - stage: K6 performance Test
+      install:
+        - curl -OL https://github.com/loadimpact/k6/releases/download/v0.20.0/k6-v0.20.0-linux64.tar.gz
+        - tar -xzf k6-v0.20.0-linux64.tar.gz
+        - sudo cp k6-v0.20.0-linux64/k6 /usr/local/bin
+      script:
+        - k6 run k6/main.js  

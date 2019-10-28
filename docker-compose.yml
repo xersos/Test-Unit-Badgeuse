@@ -1,0 +1,41 @@
+version: '3.1'
+
+services:
+  badgeuse-web:
+    build:
+      context: src/client
+    ports:
+      - 85:80
+    depends_on:
+      - badgeuse-node
+    env_file:
+      - ./.env
+
+
+  badgeuse-node:
+    container_name: badgeuse-node
+    build:
+      context: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - mariadb
+    env_file:
+      - ./.env
+
+  mariadb:
+    image: library/mariadb:latest
+    volumes:
+      - ./BDD/data:/var/lib/mysql:z
+      - ./BDD/init.d:/docker-entrypoint-initdb.d:z
+    env_file:
+      - ./.env
+    expose:
+      - 3306
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 86:8080
+

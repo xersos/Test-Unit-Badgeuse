@@ -1,0 +1,225 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~ngx-toastr/toastr.css';
+
+
+body {
+    /*background-color: #f5f2d8;*/
+}
+a, a:hover {
+    color: black;
+    text-decoration: none;
+}
+a:hover, a:focus, a:active {
+    outline: none;
+}
+
+.bg-blue{
+    background-color: #2e6fb1ff;
+    color: white;
+}
+.to-border-blue{
+    border-color: #2e6fb199;
+}
+.border-blue{
+    border: 1px solid #2e6fb199;
+}
+
+.input-group-text {
+    background-color: #2e6fb1ff;
+    color: white;
+    border-radius: 0px;
+}
+.input-group{
+    /*border: 1px solid #2e6fb1ff;*/
+    border-radius: 0px;
+}
+
+.badge-temoin {
+    font-size: 2rem;
+    transition: 1s ease;
+}
+
+/* =================================== */
+/* CONTENT PAGE                        */
+/* =================================== */
+.content-page {
+    padding: 40px 0 0 0;
+    justify-content: space-between;
+    width: 100%;
+    max-height: 100%;
+    position: absolute;
+}
+
+.content-page-child {
+    padding: 20px 40px 10px 20px;
+    width: 100%;
+    transition: all 0.3s;
+    overflow: auto;
+
+}
+.content-list {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    max-height: 100%;
+}
+
+
+/* =================================== */
+/* LISTE                               */
+/* =================================== */
+#sidebar {
+    width: 100%;
+    max-height: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    transition: all 0.3s;
+}
+.list-overflow {
+    width: 300px;
+    max-height: 100%;
+    margin-right: 0px;
+    transition: all 0.3s;
+    overflow: auto;
+}
+#sidebar.active .list-overflow, #sidebar.active{
+    width: 0px;
+    margin-right: 0px;
+}
+
+.btn-slider {
+    width: 30px;
+    padding: 3px;
+    height: 100%;
+    background-color: #2e6fb1;
+    border: none;
+    border-radius: 0px;
+}
+.btn-slider:hover, .btn-slider:not(:disabled):not(.disabled):active:focus {
+    background-color: #3c94ee;
+}
+
+.btn-slider:focus, .btn-slider:hover, .btn-slider:active {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
+}
+
+/* =================================== */
+/* INFO AREA                           */
+/* =================================== */
+
+.infobar{
+    width: 20%;
+    background-color: #205081;
+    padding: 20px 10px 20px 10px;
+    color: white;
+}
+.infobar li {
+    list-style: none;
+    margin: 0 0 0px 0;
+}
+.bg-valide{
+    background-color: rgba(0, 117, 255, 0.31);
+}
+
+.bg-encours{
+    background-color: rgba(255, 145, 42, 0.3);
+}
+
+.bg-refuse{
+    background-color: rgba(255, 60, 56, 0.31);
+}
+
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 991px) {
+    /* =================================== */
+    /* CONTENT PAGE                        */
+    /* =================================== */
+    .content-page {
+        padding: 40px 0px 0 0px;
+        justify-content: space-between;
+        flex-direction: column-reverse;
+        width: 100%;
+        height: 100%;
+    }
+
+    .content-page-child {
+        padding: 20px 30px 80px 20px;
+        width: 100%;
+        transition: all 0.3s;
+        overflow: auto;
+    }
+    .content-list {
+        padding: 0 0 0px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+
+    /* =================================== */
+    /* LISTE                               */
+    /* =================================== */
+    #sidebar {
+        width: 100%;
+        margin: 0;
+        transition: all 0.3s;
+        position: fixed;
+        top: 30px;
+    }
+    .list-overflow {
+        width: 100%;
+        height: 100%;
+        margin: 0 0px 0px 0;
+        transition: all 0.3s;
+        overflow: auto;
+        background-color: white;
+    }
+    #sidebar.active .list-overflow, #sidebar.active{
+        height: 0%;
+        width: 100%;
+        padding: 0px 0px 0px 0;
+    }
+
+    .btn-slider {
+        width: 100%;
+        padding: 3px;
+        height: 30px;
+        background-color: #2e6fb1;
+        border: none;
+        border-radius: 0px;
+        position: fixed;
+        top: 0;
+    }
+    .btn-slider:hover, .btn-slider:not(:disabled):not(.disabled):active:focus {
+        background-color: #3c94ee;
+    }
+
+    .btn-slider:focus, .btn-slider:hover, .btn-slider:active {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
+    }
+}
+
+/* =================================== */
+/* CALENDAR                            */
+/* =================================== */
+.fc-title {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 16px;
+}
+.fc-content {
+    text-align: center;
+    position: relative;
+    top: 10px;
+}
+.fc-day-grid-event .fc-time {
+    display : none;
+}

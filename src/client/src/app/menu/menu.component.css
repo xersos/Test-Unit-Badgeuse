@@ -1,0 +1,105 @@
+nav {
+    background-color: #205081;
+    font-size: 14px;
+    color: #fff;
+}
+nav a {
+    color: #fff;
+}
+.btn {
+    padding: 0 5px 0 5px;
+    margin: 6px 0 0 0;
+}
+.navbar {
+    height: 40px;
+}
+.h1 {
+    border-bottom: 2px solid orange;
+    font-size: 18px;
+}
+
+.nav-img-logo {
+    height: 40px;
+    margin-right: 20px;
+}
+
+.h1, li a {
+    transition: 0.5s ease;
+}
+
+.h1:hover, li a:hover {
+    background-color: #3c94ee;
+    border-radius: 5px 5px 0 0;
+    transition: 0.3s ease;
+}
+
+.alerte-temoin {
+    font-size: 1.5rem;
+    padding: 0;
+}
+.icone-bell {
+    color: white;
+    animation-name: bell;
+    animation-duration: 1s;
+    animation-iteration-count: 10;
+}
+
+/* The animation code */
+@keyframes bell {
+    0%   {color: white; }
+    50%  {color: red;}
+    100% {color: white; }
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 991px) {
+    section {
+        position: fixed;
+        background:#205081;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /*opacity: 0;*/
+        /*visibility: hidden;*/
+        /*transition: opacity .35s, visibility .35s, height .35s;*/
+        /*overflow: hidden;*/
+    }
+    nav {
+        height: 100%;
+        display:flex;
+        flex-direction: column;
+        justify-content:space-between;
+        background-color: #205081;
+        font-size: 20px;
+        color: #fff;
+        padding: 0px;
+    }
+    li {
+        display: flex;
+        flex-direction: column;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        font-size: 2rem;
+    }
+    button{
+        width: 75%;
+    }
+    .navbar {
+        /*height: 70px;*/
+    }
+    .h1:hover, li a:hover {
+        background-color: #3c94ee00;
+        border-radius: 0px;
+    }
+
+    @media (max-width: 550px) {
+        nav {
+            font-size: 1rem;
+        }
+    }
+
+}

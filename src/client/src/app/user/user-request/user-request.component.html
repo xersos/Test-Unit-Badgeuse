@@ -1,0 +1,149 @@
+<form [formGroup]="userRequest" (submit)="toConfirmModal()"  class="text-center">
+
+    <h3 class="mb-3">Justifier une absence</h3>
+
+    <!-- INFO -->
+    <div class="ml-5 mr-5">
+        <div class="alert alert-info d-flex shadow" role="alert">
+            <div class="h2 mr-5 ml-4">
+                <fa-icon [icon]="faInfoCircle"></fa-icon>
+            </div>
+            <div class="h-100 pt-2">
+                A travers ce formulaire, choisissez la raison ainsi que la période ou le jour de votre absence. Vous pouvez
+                fournir un justificatif et/ou décrire la raison dans l'espace commentaire.
+            </div>
+        </div>
+    </div>
+
+    <div class="ml-5 mr-5 p-5 d-flex border shadow">
+
+        <div class="w-100 mr-2">
+
+            <!-- INPUT DATE -->
+
+            <!-- nav -->
+            <div class="nav nav-tabs to-border-blue" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link bg-blue active"
+                   id="nav-graphic-tab"
+                   data-toggle="tab"
+                   href="#nav-graphic"
+                   role="tab"
+                   aria-controls="nav-graphic"
+                   aria-selected="true"
+                   (click)="onJustifiedPeriod()"
+                >
+                    Justifier une période
+                </a>
+                <a class="nav-item nav-link bg-blue"
+                   id="nav-table-tab"
+                   data-toggle="tab"
+                   href="#nav-table"
+                   role="tab"
+                   aria-controls="nav-table"
+                   aria-selected="false"
+                   (click)="onJustifiedPeriod()"
+                >
+                    Justifier une journée
+                </a>
+            </div>
+            <!-- content nav-->
+            <div class="tab-content pt-3 mb-3" id="nav-tabContent">
+
+                <!-- Justifier une période -->
+                <div class="tab-pane fade show active" id="nav-graphic" role="tabpanel" aria-labelledby="nav-graphic-tab">
+
+                    <div class="form-group border rounded input-group-top">
+                        <label for="startDate" class="pl-3">* La période d'absence commence le:</label>
+                        <input type="Date" class="form-control border-0 rounded-0" id="startDate"
+                               formControlName="startDate"
+                               (change)="onStartEndChange()"
+                        >
+
+                    </div>
+                    <div class="form-group border rounded input-group-top">
+                        <label for="endDate" class="pl-3"> *La période d'absence termine le:</label>
+                        <input type="Date" class="form-control border-0 rounded-0" id="endDate"
+                               formControlName="endDate" [min]="endDateMin"
+                        >
+                    </div>
+                </div>
+
+                <!-- justifier une journée -->
+                <div class="tab-pane fade" id="nav-table" role="tabpanel" aria-labelledby="nav-table-tab">
+
+                    <div class="form-group border rounded input-group-top">
+                        <label for="dateOnly" class="pl-3">* Date de l'absence</label>
+                        <input type="Date" class="form-control border-0 rounded-0" id="dateOnly"
+                               formControlName="dateOnly" (change)="onDateOnlyChange()">
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group border rounded">
+
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="radio" class="" id="day"
+                                           formControlName="halfDay" value="0">
+                                </div>
+                            </div>
+
+                            <label for="day" class="form-control text-left">Journée entière</label>
+
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="radio" class="" id="morning"
+                                           formControlName="halfDay" value="1">
+                                </div>
+                            </div>
+                            <label for="morning" class="form-control text-left">Le matin</label>
+
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="radio" class="" id="afternoon"
+                                           formControlName="halfDay" value="2">
+                                </div>
+                            </div>
+                            <label for="afternoon" class="form-control text-left">L'après-midi</label>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- SELECT BOX -->
+            <div class="form-group border rounded input-group-top">
+                <label for="inputMotif" class="pl-3">* Raison de l'absence</label>
+                <select id="inputMotif" class="custom-select border-0 rounded-0" formControlName="reason">
+                    <option [selected]="true" value="0" disabled>Choisissez une raison</option>
+                    <option *ngFor="let reason of reasonList" [value]="reason.id_reason">{{ reason.nom_reason | titlecase}}</option>
+                </select>
+            </div>
+
+            <!-- INPUT FILE -->
+            <div class="form-group border rounded input-group-top">
+                <label for="justifFormControlFile1" class="pl-3">Justificatif <small>(Format autorisés: .jpg .jpeg .png .pdf)</small></label>
+                <input type="file" name="photo" class="form-control-file border-0 rounded-0" id="justifFormControlFile1"
+                       ng2FileSelect [uploader]="uploader" (change)="getFileName()" [accept]="allowedMimeType"
+                       [disabled]="!userRequest.valid || userRequest.get('reason').value === 0 || processing">
+            </div>
+
+            <!-- SUBMIT -->
+            <button type="submit" [disabled]="!userRequest.valid || userRequest.get('reason').value === 0 || processing || !validFile"
+                    class="btn btn-primary w-100 bg-blue  {{ cssButton }}"
+            >Soumettre la justification d'absence</button>
+        </div>
+
+        <!-- INPUT COMMENT -->
+        <div class="w-100 ml-2">
+            <div class="form-group  rounded input-group-top">
+                <label for="comment" class="pl-3">Commentaire: <small class="ml-3">{{ countLetter }} / 255 caractères maximum</small></label>
+                <textarea class="form-control rounded-0" rows="18" id="comment" placeholder="Ajouter un Commentaire"
+                          formControlName="comment" (keyup)="onCommentChange()" maxlength="255"
+                ></textarea>
+            </div>
+        </div>
+
+
+    </div>
+</form>

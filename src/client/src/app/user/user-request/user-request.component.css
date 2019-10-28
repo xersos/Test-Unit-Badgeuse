@@ -1,0 +1,30 @@
+.input-group-top {
+    background-color: #2e6fb1ff;
+    color: white;
+    padding-top: 8px;
+    text-align: left;
+}
+
+#justifFormControlFile1 {
+    background-color: white;
+    color: #000;
+}
+
+#nav-tabContent {
+    border-left: 1px solid #2e6fb199;
+    border-right: 1px solid #2e6fb199;
+    border-bottom: 1px solid #2e6fb199;
+    padding: 2px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.nav-item.active {
+    border-left: 1px solid #2e6fb199;
+    border-right: 1px solid #2e6fb199;
+    border-top: 1px solid #2e6fb199;
+}
+
+.nav-item:not(.active):hover {
+    color: white;
+    background-color: #2a639d;
+}

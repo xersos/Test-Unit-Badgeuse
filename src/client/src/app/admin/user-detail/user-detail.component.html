@@ -1,0 +1,76 @@
+<!-- nav selection -->
+<nav data-html2canvas-ignore="true">
+  <div class="nav nav-tabs to-border-blue" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link bg-blue active" id="nav-calendrier-tab" data-toggle="tab" href="#nav-calendrier" role="tab" aria-controls="nav-calendrier" aria-selected="true">Calendrier</a>
+    <a class="nav-item nav-link bg-blue" id="nav-pie-tab" data-toggle="tab" href="#nav-pie" role="tab" aria-controls="nav-pie" aria-selected="false">Graphique camembert</a>
+  </div>
+</nav>
+
+<div class="d-flex">
+
+  <!-- INFO -->
+  <div class="infobar shadow">
+    <ul class="p-0">
+
+      <li class="mb-4">
+        <button routerLink="/hebdo" class="btn btn-outline-light">< Retour</button>
+      </li>
+
+      <li>
+        {{ userData.nom_role }}
+      </li>
+
+      <li class="h3">
+        {{ userData.nom_user | uppercase}} {{ userData.prenom_user }}
+      </li>
+
+      <li>
+        {{ userData.mail_user }}
+      </li>
+
+      <li class="pb-5">
+        <form [formGroup]="form" (change)="onSubmit()">
+          <select formControlName="nom_group">
+            <option value="0">Inactif</option>
+            <option value="1">1ère année</option>
+            <option value="2">2e année</option>
+            <option value="3">3e année</option>
+            <option value="4">4e année</option>
+            <option value="5">5e année</option>
+            <option value="6">Administrateur</option>
+          </select>
+        </form>
+      </li>
+
+      <!-- LEGEND CALENDAR -->
+      <div class="card text-black-50 bg-light mb-3">
+        <div class="card-header h4">
+          Légende des couleurs
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item bg-valide m-0">Absence validée</li>
+          <li class="list-group-item bg-encours m-0">Absence en attente</li>
+          <li class="list-group-item bg-refuse m-0">Absence refusée</li>
+        </ul>
+      </div>
+    </ul>
+  </div>
+
+  <div class="tab-content pt-3" id="nav-tabContent">
+    <!-- CALENDAR -->
+    <div class="tab-pane fade show active" id="nav-calendrier" role="tabpanel" aria-labelledby="nav-calendrier-tab">
+        <app-monthly-calendar [monthActive]="monthActive"
+                              [id_user]="id_user"
+                              [selectedWeek]="dateSelected"></app-monthly-calendar>
+      </div>
+
+
+    <!-- Pie chart -->
+      <div class="tab-pane fade d-flex justify-content-center mb-5" id="nav-pie" role="tabpanel" aria-labelledby="nav-pie-tab">
+        <app-pie-chart [id_user]="id_user"></app-pie-chart>
+      </div>
+  </div>
+
+
+
+</div>

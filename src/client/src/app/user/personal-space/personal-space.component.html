@@ -1,0 +1,56 @@
+<!-- nav selection -->
+<nav data-html2canvas-ignore="true">
+  <div class="nav nav-tabs to-border-blue" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link bg-blue active" id="nav-calendrier-tab" data-toggle="tab" href="#nav-calendrier" role="tab" aria-controls="nav-calendrier" aria-selected="true">Calendrier</a>
+    <a class="nav-item nav-link bg-blue" id="nav-pie-tab" data-toggle="tab" href="#nav-pie" role="tab" aria-controls="nav-pie" aria-selected="false">Graphique camembert</a>
+  </div>
+</nav>
+
+<div class="d-flex">
+
+  <!-- INFO -->
+  <div class="infobar shadow">
+
+    <!-- LEGEND CALENDAR -->
+    <div class="card text-black-50 bg-light mb-3">
+      <div class="card-header h4">
+        Légende des couleurs
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-valide m-0">Absence validée</li>
+        <li class="list-group-item bg-encours m-0">Absence en attente</li>
+        <li class="list-group-item bg-refuse m-0">Absence refusée</li>
+      </ul>
+    </div>
+
+    <div class="border p-2">
+      <p>
+        Vous pouvez justifier une absence (maladie, stage, alternance ou autre). Celle-ci sera validée ou refusée par un encadrant.
+        Pour plus d'information, contactez un encadrant.
+      </p>
+
+      <button class="mt-1 btn btn-outline-primary alert-primary w-100"
+              routerLink="/userRequest">
+        Soumettre une absence
+      </button>
+    </div>
+  </div>
+
+
+   <div class="tab-content pt-3" id="nav-tabContent">
+     <!-- CALENDAR -->
+     <div class="tab-pane fade show active" id="nav-calendrier" role="tabpanel" aria-labelledby="nav-calendrier-tab">
+       <app-monthly-calendar [monthActive]="monthActive"
+                             [id_user]="id_user"
+                             [selectedWeek]="currentDate">
+       </app-monthly-calendar>
+      </div>
+
+     <!-- Pie chart -->
+     <div class="tab-pane fade d-flex justify-content-center mb-5" id="nav-pie" role="tabpanel" aria-labelledby="nav-pie-tab">
+       <app-pie-chart [id_user]="id_user"></app-pie-chart>
+     </div>
+
+
+ </div>
+</div>
