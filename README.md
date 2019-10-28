@@ -6,7 +6,7 @@ La documentation pour les routes du back se trouve sur ./server/out/index.html (
  
 ## PRÉ-REQUIS ##
 
-* DOCKER
+* DOCKE
 
 où
 
