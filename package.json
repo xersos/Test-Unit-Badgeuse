@@ -9,7 +9,7 @@
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chart.js": "^2.8.0",
-    "codecov": "^3.6.1",
+    "codecov": "^3.6.5",
     "cors": "^2.8.5",
     "coveralls": "^3.0.6",
     "date-diff": "^0.2.1",
